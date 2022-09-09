@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ira-calculator/static/css/main.073c9b0a.css",
+    "main.js": "/ira-calculator/static/js/main.61855aeb.js",
+    "static/js/787.65d0abc7.chunk.js": "/ira-calculator/static/js/787.65d0abc7.chunk.js",
+    "index.html": "/ira-calculator/index.html",
+    "main.073c9b0a.css.map": "/ira-calculator/static/css/main.073c9b0a.css.map",
+    "main.61855aeb.js.map": "/ira-calculator/static/js/main.61855aeb.js.map",
+    "787.65d0abc7.chunk.js.map": "/ira-calculator/static/js/787.65d0abc7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.61855aeb.js"
+  ]
+}
