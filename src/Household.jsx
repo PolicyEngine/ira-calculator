@@ -1,6 +1,5 @@
 import React from 'react';
 import { Radio, Button } from "antd";
-import CleanVehicleForm from './CleanVehicleForm';
 
 const POLICYENGINE_API = "https://policyengine.org/us/api"
 
@@ -111,9 +110,6 @@ export default function Household(props){
             <label>Zipcode</label>
             <input type="number" defaultValue={props.household.zipCode} />
         </form>
-        <hr />
-        <CleanVehicleForm />
-        <hr />
         <Button onClick={() => {
             new HouseholdData(props.household).calculateResults().then(results => alert(`Heat pump rebate: ${results.capped_heat_pump_rebate}`))
         }}>Simulate</Button>
