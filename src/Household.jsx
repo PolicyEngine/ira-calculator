@@ -1,6 +1,7 @@
 import React from 'react';
 import { Radio, Button } from "antd";
 import HouseholdData from './Household';
+import CleanVehicleForm from './CleanVehicleForm';
 
 export default function Household(props){
     function handleChangeState(evt) {
@@ -33,6 +34,9 @@ export default function Household(props){
             <label>Zipcode</label>
             <input type="number" defaultValue={props.household.zipCode} />
         </form>
+        <hr />
+        <CleanVehicleForm />
+        <hr />
         <Button onClick={() => {
             new HouseholdData(props.household).calculateResults().then(results => alert(`Heat pump rebate: ${results.capped_heat_pump_rebate}`))
         }}>Simulate</Button>
