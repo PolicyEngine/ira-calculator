@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ira-calculator/static/css/main.29cd549e.css",
-    "main.js": "/ira-calculator/static/js/main.7ec0bc85.js",
+    "main.js": "/ira-calculator/static/js/main.d92fdb1c.js",
     "static/js/787.65d0abc7.chunk.js": "/ira-calculator/static/js/787.65d0abc7.chunk.js",
     "static/media/white.png": "/ira-calculator/static/media/white.0f6b6fdc9268c5452190.png",
     "index.html": "/ira-calculator/index.html",
     "main.29cd549e.css.map": "/ira-calculator/static/css/main.29cd549e.css.map",
-    "main.7ec0bc85.js.map": "/ira-calculator/static/js/main.7ec0bc85.js.map",
+    "main.d92fdb1c.js.map": "/ira-calculator/static/js/main.d92fdb1c.js.map",
     "787.65d0abc7.chunk.js.map": "/ira-calculator/static/js/787.65d0abc7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.29cd549e.css",
-    "static/js/main.7ec0bc85.js"
+    "static/js/main.d92fdb1c.js"
   ]
 }
