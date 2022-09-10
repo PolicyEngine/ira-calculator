@@ -23,13 +23,14 @@ export class HouseholdData {
         let household = {
           tax_units: {
             tax_unit: {
-                purchased_qualifying_new_clean_vehicle: {2023: true},
-              new_clean_vehicle_msrp: {2023: this.new_clean_vehicle_msrp},
-              new_clean_vehicle_classification: {2023: this.new_clean_vehicle_classification},
+              purchased_qualifying_new_clean_vehicle: {2023: 1},
+              new_clean_vehicle_msrp: {2023: +this.new_clean_vehicle_msrp},
+              new_clean_vehicle_classification: {2023: "VAN"},
+              new_clean_vehicle_battery_capacity: {2023: 100},
               new_clean_vehicle_credit: {2023: null},
               new_clean_vehicle_battery_critical_minerals_extracted_in_trading_partner_country: {2023: 1},
               new_clean_vehicle_battery_components_made_in_north_america: {2023: 1},
-              adjusted_gross_income: {2023: this.income}, // This is an approximation
+              adjusted_gross_income: {2023: +this.income}, // This is an approximation
             }
           },
           households: {
@@ -93,14 +94,14 @@ export default function Household(props){
     return (
         <>
             <label>Income</label>
-            <input type="number" defaultValue={props.household.income} />
+            <input name="income" type="number" defaultValue={props.household.income} onChange={handleChangeState} />
             <label>Marital Status</label>
-            <Radio.Group name="isMarried" defaultValue={props.household.married} onChange={handleChangeState}>
+            <Radio.Group name="married" defaultValue={props.household.married} onChange={handleChangeState}>
                 <Radio.Button value={false}>Single</Radio.Button>
                 <Radio.Button value={true}>Married</Radio.Button>
             </Radio.Group>
             <label>Number of dependents</label>
-            <Radio.Group name="haveChildren" defaultValue={props.household.numChildren} onChange={handleChangeState}>
+            <Radio.Group name="numChildren" defaultValue={props.household.numChildren} onChange={handleChangeState}>
                 <Radio.Button value={0}>none</Radio.Button>
                 <Radio.Button value={1}>1</Radio.Button>
                 <Radio.Button value={2}>2</Radio.Button>

@@ -90,14 +90,22 @@ function App() {
     income: 50000,
   }));
 
+  const [evCredit, setEVCredit] = useState(0);
+
   return (
     <div>
       <Header />
       <Household household={household} setHousehold={setHousehold} />
       <CleanVehicleForm household={household} setHousehold={setHousehold} />
       <Button onClick={() => {
-        new HouseholdData(household).calculateResults().then(() => alert(7500))
+        new HouseholdData(household).calculateResults().then(setEVCredit);//.then(res => alert(`New clean vehicle credit value: $${res}`))
       }}>Simulate EV credits</Button>
+      <h3>Results</h3>
+      {
+        evCredit > 0 ?
+          <p>You're eligible: your eligible new clean vehicle credit is ${evCredit}.</p> :
+          <p>You don't qualify for the new clean vehicle credit.</p>
+      }
     </div>
   );
 }
