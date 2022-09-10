@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/ira-calculator/static/css/main.073c9b0a.css",
-    "main.js": "/ira-calculator/static/js/main.18d4ed62.js",
+    "main.css": "/ira-calculator/static/css/main.29cd549e.css",
+    "main.js": "/ira-calculator/static/js/main.aff0fddf.js",
     "static/js/787.65d0abc7.chunk.js": "/ira-calculator/static/js/787.65d0abc7.chunk.js",
+    "static/media/white.png": "/ira-calculator/static/media/white.0f6b6fdc9268c5452190.png",
     "index.html": "/ira-calculator/index.html",
-    "main.073c9b0a.css.map": "/ira-calculator/static/css/main.073c9b0a.css.map",
-    "main.18d4ed62.js.map": "/ira-calculator/static/js/main.18d4ed62.js.map",
+    "main.29cd549e.css.map": "/ira-calculator/static/css/main.29cd549e.css.map",
+    "main.aff0fddf.js.map": "/ira-calculator/static/js/main.aff0fddf.js.map",
     "787.65d0abc7.chunk.js.map": "/ira-calculator/static/js/787.65d0abc7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.18d4ed62.js"
+    "static/css/main.29cd549e.css",
+    "static/js/main.aff0fddf.js"
   ]
 }
