@@ -1,7 +1,27 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 
+// TODO: create one of these objects in household component
+class HouseholdInfo {
+  constructor({married, numChildren, zipCode, income}) {
+    this.married = married;
+    this.numChildren = numChildren;
+    this.zipCode = zipCode;
+    this.income = income;
+  }
+}
+
 function App() {
+  // TODO: begin with a null household in the PR that creates Household component.
+  // This is just placeholder data for now
+  const [household, setHousehold] = useState(new HouseholdInfo({
+    married: true,
+    numChildren: 3,
+    zipCode: 98102,
+    income: 50000,
+  }));
+  console.log(household, setHousehold);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +47,7 @@ const exampleHousehold = {
 
 function APIExampleTest() {
   const [rebateAmount, setRebateAmount] = useState(null);
-  
+
   useEffect(() => {
     fetch(
       "https://policyengine.org/us/api/calculate", {
