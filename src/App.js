@@ -1,7 +1,18 @@
 import './App.css';
+import './calculateCreditsAndRebates';
 import { useState, useEffect } from 'react';
 import Header from './header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// TODO: create one of these objects in household component
+class HouseholdInfo {
+  constructor({married, numChildren, zipCode, income}) {
+    this.married = married;
+    this.numChildren = numChildren;
+    this.zipCode = zipCode;
+    this.income = income;
+  }
+}
 
 // TODO: create one of these objects in household component
 class HouseholdInfo {
@@ -50,23 +61,8 @@ function APIExampleTest() {
   const [rebateAmount, setRebateAmount] = useState(null);
 
   useEffect(() => {
-    fetch(
-      "https://policyengine.org/us/api/calculate", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          household: exampleHousehold,
-        })
-      }
-    )
-      .then(results => results.json())
-      .then(data => {
-        const rebateAmount = data.tax_units.tax_unit.capped_heat_pump_rebate[2023];
-        setRebateAmount(rebateAmount);
-      });
+    const moneySavedInfo = calculateCreditsAndRebates();
+    console.log('TODO: move this function call to the right place', moneySavedInfo);
   }, []); // <-- Have to pass in [] here!
 
   if(rebateAmount === null) {
