@@ -2,7 +2,9 @@ import './App.css';
 import { useState } from 'react';
 import Header from './header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Household from './Household';
+import Household, { HouseholdData } from './Household';
+import CleanVehicleForm from './CleanVehicleForm';
+import { Button } from 'antd';
 
 // TODO: create one of these objects in household component
 class HouseholdInfo {
@@ -92,6 +94,10 @@ function App() {
     <div>
       <Header />
       <Household household={household} setHousehold={setHousehold} />
+      <CleanVehicleForm household={household} setHousehold={setHousehold} />
+      <Button onClick={() => {
+        new HouseholdData(household).calculateResults().then(() => alert(7500))
+      }}>Simulate EV credits</Button>
     </div>
   );
 }

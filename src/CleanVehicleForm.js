@@ -1,34 +1,22 @@
 import React from 'react';
 
-export default function CleanVehicleForm() {
-  const [formData, setFormData] = React.useState(
-    {
-      new_clean_vehicle_classification: "",
-      new_clean_vehicle_msrp: "",
-      purchased_qualifying_new_clean_vehicle: true,
-    }
-  )
-
-  function handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    console.log(event);
-    setFormData(prev => {
-      console.log(prev);
-      return {
-        ...prev,
-        [name]: type === "checkbox" ? checked : value
-      }
-    })
+export default function CleanVehicleForm(props) {
+  function handleChange(evt) {
+    const updatedNewInfo = {
+      ...props.household,
+      [evt.target.name]: evt.target.value
+    };
+    props.setHousehold(updatedNewInfo);
   }
 
   return (
     <form>
-      <label htmlFor="purchased_qualifying_new_clean_vehicle">Did you buy a qualifiying new vehicle?kljlkj</label>
+      <label htmlFor="purchased_qualifying_new_clean_vehicle">Did you buy a qualifiying new vehicle?</label>
       <br />
       <input
         type="checkbox"
         id="purchased_qualifying_new_clean_vehicle"
-        checked={formData.purchased_qualifying_new_clean_vehicle}
+        checked={props.purchased_qualifying_new_clean_vehicle}
         onChange={handleChange}
         name="purchased_qualifying_new_clean_vehicle"
       />
@@ -42,7 +30,7 @@ export default function CleanVehicleForm() {
         placeholder="Vehicle MSRP"
         onChange={handleChange}
         name="new_clean_vehicle_msrp"
-        value={formData.new_clean_vehicle_msrp}
+        defaultValue={props.new_clean_vehicle_msrp}
       />
       <br />
 
@@ -50,14 +38,14 @@ export default function CleanVehicleForm() {
       <br />
       <select
         id="new_clean_vehicle_classification"
-        value={formData.new_clean_vehicle_classification}
+        defaultValue={props.new_clean_vehicle_classification}
         onChange={handleChange}
         name="new_clean_vehicle_classification"
       >
-        <option value="van">Van</option>
-        <option value="suv">SUV</option>
-        <option value="pickup">Pickup</option>
-        <option value="other">All Other Vehicles</option>
+        <option value="VAN">Van</option>
+        <option value="SUV">SUV</option>
+        <option value="PICKUP">Pickup</option>
+        <option value="OTHER">All Other Vehicles</option>
       </select>
     </form>
   )

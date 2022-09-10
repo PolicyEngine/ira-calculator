@@ -4,11 +4,16 @@ import { Radio, Button } from "antd";
 const POLICYENGINE_API = "https://policyengine.org/us/api"
 
 export class HouseholdData {
-    constructor({married, numChildren, zipCode, income}) {
+    constructor({married, numChildren, zipCode, income, purchased_qualifying_new_clean_vehicle,
+        new_clean_vehicle_msrp, new_clean_vehicle_classification,
+    }) {
         this.married = married;
         this.numChildren = numChildren;
         this.zipCode = zipCode;
         this.income = income;
+        this.purchased_qualifying_new_clean_vehicle = purchased_qualifying_new_clean_vehicle;
+        this.new_clean_vehicle_msrp = new_clean_vehicle_msrp;
+        this.new_clean_vehicle_classification = new_clean_vehicle_classification;
 
         this.capped_heat_pump_rebate = null;
         this.income_tax_before_credits = null;
@@ -18,10 +23,12 @@ export class HouseholdData {
         let household = {
           tax_units: {
             tax_unit: {
-              heat_pump_expenditures: {2023: 10_000},
-              high_efficiency_electric_home_rebate_percent_covered: {2023: 1},
-              capped_heat_pump_rebate: {2023: null},
-              income_tax_before_credits: {2023: null},
+                purchased_qualifying_new_clean_vehicle: {2023: true},
+              new_clean_vehicle_msrp: {2023: this.new_clean_vehicle_msrp},
+              new_clean_vehicle_classification: {2023: this.new_clean_vehicle_classification},
+              new_clean_vehicle_credit: {2023: null},
+              new_clean_vehicle_battery_critical_minerals_extracted_in_trading_partner_country: {2023: 1},
+              new_clean_vehicle_battery_components_made_in_north_america: {2023: 1},
               adjusted_gross_income: {2023: this.income}, // This is an approximation
             }
           },
@@ -69,12 +76,7 @@ export class HouseholdData {
             household: this.getOpenFiscaSituation()
           })
         }).then(response => response.json()).then(data => {
-            const capped_heat_pump_rebate = data.tax_units.tax_unit.capped_heat_pump_rebate[2023];
-            const income_tax_before_credits = data.tax_units.tax_unit.income_tax_before_credits[2023];
-            return {
-                capped_heat_pump_rebate: capped_heat_pump_rebate,
-                income_tax_before_credits: income_tax_before_credits,
-            }
+            return data.tax_units.tax_unit.new_clean_vehicle_credit[2023];
         });
       }
 }
@@ -90,7 +92,6 @@ export default function Household(props){
 
     return (
         <>
-        <form>
             <label>Income</label>
             <input type="number" defaultValue={props.household.income} />
             <label>Marital Status</label>
@@ -109,10 +110,6 @@ export default function Household(props){
             </Radio.Group>
             <label>Zipcode</label>
             <input type="number" defaultValue={props.household.zipCode} />
-        </form>
-        <Button onClick={() => {
-            new HouseholdData(props.household).calculateResults().then(results => alert(`Heat pump rebate: ${results.capped_heat_pump_rebate}`))
-        }}>Simulate</Button>
         </>
     )
 
