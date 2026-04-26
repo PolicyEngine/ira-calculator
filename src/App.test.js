@@ -1,11 +1,28 @@
-import { render, screen, act } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-test('reaches correct result', async () => {
-  act(() => { // eslint-disable-line
-    render(<App />);
+test('shows clean vehicle credit result', async () => {
+  window.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          tax_units: {
+            tax_unit: {
+              new_clean_vehicle_credit: { 2023: 7500 },
+            },
+          },
+        }),
+    })
+  );
+
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: /simulate ev credits/i }));
+
+  await waitFor(() => {
+    expect(
+      screen.getByText(
+        "You're eligible: your eligible new clean vehicle credit is $7500."
+      )
+    ).toBeInTheDocument();
   });
-  await new Promise((r) => setTimeout(r, 2000));
-  const linkElement = screen.getByText("The heat pump rebate for $10k in heat pump expenditures in 2023 is $8000.");
-  expect(linkElement).toBeInTheDocument();
 });
